@@ -29,18 +29,18 @@ end
 local function validRemote(rm, _className)
     local fullName =  rm:GetFullName()
     
-    if string.find(fullName, "DefaultChat") then return false end
+  if string.find(fullName, "DefaultChat") then return false end
     if string.find(fullName, LocalPlayer.Name) then return false end
     if rm:FindFirstChild("__FUNCTION") then return false end
     if rm.Parent == game:GetService("JointsService") then return false end
     
-    if rm.ClassName ~= _className then return false end
+   if rm.ClassName ~= _className then return false end
  
-    if getgenv().blacklisted then
+   if getgenv().blacklisted then
         if table.find(getgenv().blacklisted, fullName) then return false end
     end
  
-    return true
+   return true
 end
  
 local function harked()
@@ -74,18 +74,18 @@ local function scanGame()
                 remote:FireServer(unpack(alternativeSS.run), requireScript)
             end
  
-     remote:FireServer(unpack(alternativeSS.helpme), requireScript)
+   remote:FireServer(unpack(alternativeSS.helpme), requireScript)
       remote:FireServer(unpack(alternativeSS.pickett), requireScript)
          remote:FireServer(requireScript)
  
-        end
-    end
+   end
+  end
  
-    for _, remote in pairs(game:GetDescendants()) do
-        if validRemote(remote, "RemoteFunction") and not attached() then
-            remote:InvokeServer(requireScript)
-        end
-    end
+  for _, remote in pairs(game:GetDescendants()) do
+      if validRemote(remote, "RemoteFunction") and not attached() then
+         remote:InvokeServer(requireScript)
+      end
+   end
  
 end
     scanGame()
