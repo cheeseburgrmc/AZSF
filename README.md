@@ -93,7 +93,6 @@ end
  if not attached(2) then
         notify("Unable to find backdoor.\nGame not backdoored?")
     end
-end
  
 if game:IsLoaded() then
     pcall(Main)
